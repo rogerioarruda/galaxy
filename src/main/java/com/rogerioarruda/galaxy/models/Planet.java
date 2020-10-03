@@ -20,7 +20,18 @@ public class Planet {
 	
 	private String terrain;
 	
-	private Integer qtAp;
+	private Integer qtFilms;
+
+	public Planet() {
+		
+	}
+	public Planet(String name, String climate, String terrain, Integer qtFilms) {
+		super();
+		this.name = name;
+		this.climate = climate;
+		this.terrain = terrain;
+		this.qtFilms = qtFilms;
+	}
 
 	public Long getId() {
 		return id;
@@ -54,12 +65,12 @@ public class Planet {
 		this.terrain = terrain;
 	}
 
-	public Integer getQtAp() {
-		return qtAp;
+	public Integer getQtFilms() {
+		return qtFilms;
 	}
 
-	public void setQtAp(Integer qtAp) {
-		this.qtAp = qtAp;
+	public void setQtFilms(Integer qtFilms) {
+		this.qtFilms = qtFilms;
 	}
 
 }
