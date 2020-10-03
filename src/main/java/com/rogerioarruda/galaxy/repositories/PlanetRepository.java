@@ -1,12 +1,14 @@
 package com.rogerioarruda.galaxy.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.rogerioarruda.galaxy.models.Planet;
 
-@Repository
-public interface PlanetRepository extends JpaRepository<Planet, Long> {
+import reactor.core.publisher.Flux;
 
-    Iterable<Planet> findByName(String name);
+@Repository
+public interface PlanetRepository extends ReactiveCrudRepository<Planet, Long> {
+
+	Flux<Planet> findByName(String name);
 }

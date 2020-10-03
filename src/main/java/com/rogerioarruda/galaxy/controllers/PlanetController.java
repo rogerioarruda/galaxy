@@ -18,6 +18,7 @@ import com.rogerioarruda.galaxy.dtos.SearchDTO;
 import com.rogerioarruda.galaxy.models.Planet;
 import com.rogerioarruda.galaxy.services.PlanetService;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
@@ -29,22 +30,22 @@ public class PlanetController {
   private PlanetService planetService;
 
   @PostMapping
-  public @ResponseBody Planet post (@RequestBody Planet planet) {	  
+  public @ResponseBody Mono<Planet> post (@RequestBody Planet planet) {	  
 	  return planetService.save(planet);
   }
 
   @GetMapping
-  public @ResponseBody Iterable<Planet> getAllPlanets() {
+  public @ResponseBody Flux<Planet> getAllPlanets() {
     return planetService.getAll();
   }  
   
   @GetMapping(path="/{id}")
-  public @ResponseBody Optional<Planet> getById(@PathVariable Long id) {
+  public @ResponseBody Mono<Planet> getById(@PathVariable Long id) {
     return planetService.findByid(id);
   }
 
   @GetMapping(path="/name/{name}")
-  public @ResponseBody Iterable<Planet> getByName(@PathVariable String name) {
+  public @ResponseBody Flux<Planet> getByName(@PathVariable String name) {
     return planetService.findByName(name);
   }
   
