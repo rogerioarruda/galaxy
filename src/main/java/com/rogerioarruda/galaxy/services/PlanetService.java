@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rogerioarruda.galaxy.dtos.PlanetDTO;
+import com.rogerioarruda.galaxy.dtos.SearchDTO;
 import com.rogerioarruda.galaxy.models.Planet;
 import com.rogerioarruda.galaxy.repositories.PlanetRepository;
 import com.rogerioarruda.galaxy.restclient.SwapiClient;
@@ -41,7 +41,7 @@ public class PlanetService {
 		  planetRepository.deleteById(id);
 	  }
 
-	  public Mono<PlanetDTO> getPlanets(){
-		  return swapiClient.getAllPlanets();
-	  }
+	  public Mono<SearchDTO> findByNameSwapi(String name) {
+		  return swapiClient.findPlanet(name);
+	  } 
 }

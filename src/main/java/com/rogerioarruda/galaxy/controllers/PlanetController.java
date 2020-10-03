@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rogerioarruda.galaxy.dtos.PlanetDTO;
+import com.rogerioarruda.galaxy.dtos.SearchDTO;
 import com.rogerioarruda.galaxy.models.Planet;
 import com.rogerioarruda.galaxy.services.PlanetService;
 
@@ -33,19 +34,15 @@ public class PlanetController {
   }
 
   @GetMapping
-  public @ResponseBody Mono<PlanetDTO> getAllPlanets() {
-    return planetService.getPlanets();
+  public @ResponseBody Iterable<Planet> getAllPlanets() {
+    return planetService.getAll();
   }  
   
-	/*
-	 * @GetMapping public @ResponseBody Iterable<Planet> getAllPlanets() { return
-	 * planetService.getAll(); }
-	 */
   @GetMapping(path="/{id}")
   public @ResponseBody Optional<Planet> getById(@PathVariable Long id) {
     return planetService.findByid(id);
   }
-  
+
   @GetMapping(path="/name/{name}")
   public @ResponseBody Iterable<Planet> getByName(@PathVariable String name) {
     return planetService.findByName(name);

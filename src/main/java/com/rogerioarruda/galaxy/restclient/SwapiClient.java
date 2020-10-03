@@ -4,19 +4,21 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.rogerioarruda.galaxy.dtos.PlanetDTO;
+import com.rogerioarruda.galaxy.dtos.SearchDTO;
 
 import reactor.core.publisher.Mono;
 
 @Component
 public class SwapiClient {
 
-    public Mono<PlanetDTO> getAllPlanets() {
+    public Mono<SearchDTO> findPlanet(String search) {
+    	String uri = "https://swapi.dev/api/planets/" + (search.trim().length() > 0 ? ("?search=" + search) : "");
         WebClient.Builder builder = WebClient.builder();
         return builder
         	.build()
         	.get()
-        	.uri("https://swapi.dev/api/planets/1/")
+        	.uri(uri)
         	.retrieve()
-        	.bodyToMono(PlanetDTO.class);
+        	.bodyToMono(SearchDTO.class);
     }
 }
